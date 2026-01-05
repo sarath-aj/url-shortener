@@ -239,6 +239,19 @@ const validateAnalyticsTimeRange = [
     }),
 ];
 
+const validateBulkDelete = [
+  body("ids")
+    .isArray({ min: 1 })
+    .withMessage("IDs must be a non-empty array")
+    .bail()
+    .custom((ids) => {
+      if (!ids.every((id) => mongoose.Types.ObjectId.isValid(id))) {
+        throw new Error("All IDs must be valid MongoDB ObjectIds");
+      }
+      return true;
+    }),
+];
+
 module.exports = {
   validateUserRegistration,
   validateUserLogin,
@@ -249,4 +262,5 @@ module.exports = {
   validateProfileUpdate,
   validateChangePassword,
   validateAccountDeactivation,
+  validateBulkDelete,
 };
