@@ -12,8 +12,10 @@ const validateUserUpdate = [
     .isLength({ min: 2, max: 50 })
     .withMessage("Name must be between 2 and 50 characters")
     .bail()
-    .matches(/^[a-zA-Z\s.'-]+$/)
-    .withMessage("Name can only contain letters and spaces"),
+    .matches(/^[\p{L}\s.'-]+$/u)
+    .withMessage(
+      "Name can only contain letters, spaces, and basic punctuation"
+    ),
 ];
 
 module.exports = {
