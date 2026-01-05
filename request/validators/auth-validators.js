@@ -31,7 +31,11 @@ const validateUserRegistration = [
     .withMessage("Email is required")
     .bail()
     .isEmail()
-    .withMessage("Please provide a valid email address"),
+    .withMessage("Please provide a valid email address")
+    .normalizeEmail({
+      gmail_remove_dots: false,
+      gmail_remove_subaddress: false,
+    }),
 
   body("password")
     .notEmpty()
