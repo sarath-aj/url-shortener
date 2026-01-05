@@ -224,9 +224,13 @@ class AnalyticsService {
 
       // 1️⃣ Try cache first
       if (redisClient) {
-        const cached = await redisClient.get(cacheKey);
-        if (cached) {
-          return JSON.parse(cached);
+        try {
+          const cached = await redisClient.get(cacheKey);
+          if (cached) {
+            return JSON.parse(cached);
+          }
+        } catch (err) {
+          console.error("Admin analytics cache read error:", err);
         }
       }
 
