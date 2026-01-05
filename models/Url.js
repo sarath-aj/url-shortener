@@ -126,7 +126,11 @@ urlSchema.virtual("daysSinceCreated").get(function () {
 
 // Virtual for short URL
 urlSchema.virtual("shortUrl").get(function () {
-  return `${process.env.BASE_URL}/${this.shortCode}`;
+  const baseUrl = process.env.BASE_URL;
+  if (!baseUrl) {
+    return null;
+  }
+  return `${baseUrl}/${this.shortCode}`;
 });
 
 // Pre-save middleware to handle expiration
