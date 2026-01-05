@@ -246,10 +246,10 @@ class AuthController {
         name: user.name,
         email: user.email,
         role: user.role,
-        createdAt: user.createdAt,
-        lastLogin: user.lastLogin,
-        totalUrls: user.totalUrls,
-        totalClicks: user.totalClicks,
+        created_at: user.createdAt,
+        last_login: user.lastLogin,
+        total_urls: user.totalUrls,
+        total_clicks: user.totalClicks,
       };
 
       return successResponse(
@@ -279,10 +279,10 @@ class AuthController {
         name: user.name,
         email: user.email,
         role: user.role,
-        createdAt: user.createdAt,
-        lastLogin: user.lastLogin,
-        totalUrls: user.totalUrls,
-        totalClicks: user.totalClicks,
+        created_at: user.createdAt,
+        last_login: user.lastLogin,
+        total_urls: user.totalUrls,
+        total_clicks: user.totalClicks,
       };
 
       return successResponse(
@@ -333,10 +333,10 @@ class AuthController {
         name: user.name,
         email: user.email,
         role: user.role,
-        createdAt: user.createdAt,
-        lastLogin: user.lastLogin,
-        totalUrls: user.totalUrls,
-        totalClicks: user.totalClicks,
+        created_at: user.createdAt,
+        last_login: user.lastLogin,
+        total_urls: user.totalUrls,
+        total_clicks: user.totalClicks,
       };
 
       return successResponse(
