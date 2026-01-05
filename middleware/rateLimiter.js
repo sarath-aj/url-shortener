@@ -32,7 +32,7 @@ const createRateLimiter = (options = {}) => {
     },
     keyGenerator: (req) => {
       // Use user ID if authenticated, otherwise use IP
-      return req.userId || ipKeyGenerator(req); // Safe IP handling;
+      return req.userId || ipKeyGenerator(req.ip); // Safe IP handling;
     },
   };
 
@@ -78,7 +78,7 @@ const authLimiter = createRateLimiter({
   max: 5, // 5 attempts per 15 minutes
   message: "Too many authentication attempts, please try again later",
   skipSuccessfulRequests: true, // Don't count successful requests // LEARN
-  keyGenerator: (req, res) => ipKeyGenerator(req), // Safe IP handling
+  keyGenerator: (req, res) => ipKeyGenerator(req.ip), // Safe IP handling
 });
 
 /**
@@ -109,7 +109,7 @@ const urlAccessLimiter = createRateLimiter({
 
   // req.ip alone is unsafe for IPv6.
   // ipKeyGenerator ensures consistent representation of IPs.
-  keyGenerator: (req, res) => ipKeyGenerator(req), // Safe IP handling
+  keyGenerator: (req, res) => ipKeyGenerator(req.ip), // Safe IP handling
 });
 
 /**
