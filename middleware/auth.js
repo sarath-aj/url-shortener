@@ -72,7 +72,6 @@ const verifyRefreshToken = async (req, res, next) => {
     next();
   } catch (error) {
     if (error.name === "JsonWebTokenError") {
-      console.log("error");
       console.log(error);
       return unauthorizedResponse(res, "Invalid refresh token");
     } else if (error.name === "TokenExpiredError") {
