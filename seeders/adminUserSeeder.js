@@ -2,18 +2,22 @@ const mongoose = require("mongoose");
 const User = require("../models/User");
 require("dotenv").config();
 
+if (!process.env.ADMIN_PASSWORD || !process.env.ADMIN2_PASSWORD) {
+  throw new Error("Admin seed passwords are not defined");
+}
+
 const adminUsers = [
   {
-    name: "admin",
-    email: "admin@example.com",
-    password: "admin123456", // This will be hashed automatically
+    name: process.env.ADMIN_NAME || "admin",
+    email: process.env.ADMIN_EMAIL || "admin@example.com",
+    password: process.env.ADMIN_PASSWORD,
     role: "admin",
     isActive: true,
   },
   {
-    name: "admin2",
-    email: "admin2@example.com",
-    password: "super123456",
+    name: process.env.ADMIN2_NAME || "admin2",
+    email: process.env.ADMIN2_EMAIL || "admin2@example.com",
+    password: process.env.ADMIN2_PASSWORD,
     role: "admin",
     isActive: true,
   },
