@@ -4,11 +4,15 @@ const User = require("../models/User");
 const createFakeUsers = async (count = 10) => {
   const users = [];
 
+  if (!process.env.ADMIN_SEED_PASSWORD) {
+    throw new Error("ADMIN_SEED_PASSWORD is not defined");
+  }
+
   // Always include at least one admin
   users.push({
     name: "admin",
     email: "admin@urlshortner.com",
-    password: "admin123456",
+    password: process.env.ADMIN_SEED_PASSWORD,
     role: "admin",
     isActive: true,
   });
