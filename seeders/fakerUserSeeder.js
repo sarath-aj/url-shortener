@@ -8,15 +8,6 @@ const createFakeUsers = async (count = 10) => {
     throw new Error("ADMIN_SEED_PASSWORD is not defined");
   }
 
-  // Always include at least one admin
-  users.push({
-    name: "admin",
-    email: "admin@urlshortner.com",
-    password: process.env.ADMIN_SEED_PASSWORD,
-    role: "admin",
-    isActive: true,
-  });
-
   // Generate fake users
   for (let i = 0; i < count; i++) {
     const name = faker.internet
